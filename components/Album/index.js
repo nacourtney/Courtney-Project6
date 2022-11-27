@@ -80,14 +80,8 @@ class Album extends Component {
     const photo = {
       albumId: 2,
       title: "dolore esse a in eos sed",
-      url: `https://via.placeholder.com/600.png/${randomColor().replace(
-        "#",
-        ""
-      )}`,
-      thumbnailUrl: `https://via.placeholder.com/150.png/${randomColor().replace(
-        "#",
-        ""
-      )}`,
+      url: `https://picsum.photos/200/300`,
+      thumbnailUrl: `https://picsum.photos/200/300`,
     };
     this.props.addPhoto(photo);
   };
@@ -103,7 +97,6 @@ class Album extends Component {
         <Text style={styles.toolbar}>Album</Text>
         <Text style={styles.log}>
           {JSON.stringify(this.state.log, null, 2)}
-          {JSON.stringify(this.state.log, null, 3)}
         </Text>
 
         <ScrollView>
@@ -111,7 +104,9 @@ class Album extends Component {
             height={250}
             width={250}
             borderRadius={20}
-            source={{ uri: "http://placehold.it/250/3B5998" }}
+            source={{
+              uri: "https://picsum.photos/200/300",
+            }}
           />
 
           <Button onPress={() => console.log("Thanks for clicking me!")}>
