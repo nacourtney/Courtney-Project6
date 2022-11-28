@@ -155,9 +155,9 @@ const url = [
 ];
 
 const thumbnail = [
-  "https://picsum.photos/200/300",
-  "https://picsum.photos/200/300?grayscale",
-  "https://picsum.photos/200/300/?blur=1",
+  "https://i.picsum.photos/id/23/3887/4899.jpg?hmac=2fo1Y0AgEkeL2juaEBqKPbnEKm_5Mp0M2nuaVERE6eE",
+  "https://i.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
+  "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
 ];
 
 const styles = StyleSheet.create({
