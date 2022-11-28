@@ -20,11 +20,11 @@ export const fetchPhotos = () => {
     type: FETCH_PHOTOS,
     payload: [
       {
-        albumId: 2,
-        title: "dolore esse a in eos sed",
-        url: "https://via.placeholder.com/600.png/f783bd",
-        thumbnailUrl: "https://via.placeholder.com/150.png/d83ea2",
-        id: 2,
+        albumId: 1,
+        title: "First Picture (Dog)",
+        url: "https://picsum.photos/id/237/200/300",
+        thumbnailUrl: "https://picsum.photos/id/237/200/300",
+        id: 1,
       },
     ],
   };

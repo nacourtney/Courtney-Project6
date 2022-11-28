@@ -9,6 +9,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  TouchableHighlightBase,
 } from "react-native";
 import randomColor from "randomcolor";
 import { connect } from "react-redux";
@@ -16,6 +17,8 @@ import { fetchPhotos, addPhoto, removePhoto } from "../../redux/photos/actions";
 import store from "../../redux";
 
 const { ImageGlam } = glamorous;
+
+const threeAssignmentImages = [];
 
 const Container = glamorous.view({
   flex: 1,
@@ -66,6 +69,7 @@ const Button = glamorous.touchableHighlight({ padding: 10 }, (props) => ({
 class Album extends Component {
   state = {
     log: "",
+    index: 0,
   };
 
   componentDidMount() {
@@ -78,11 +82,17 @@ class Album extends Component {
 
   addPhoto = () => {
     const photo = {
-      albumId: 2,
-      title: "dolore esse a in eos sed",
-      url: `https://picsum.photos/200/300`,
-      thumbnailUrl: `https://picsum.photos/200/300`,
+      albumId: this.state.index,
+      title: title[this.state.index],
+      url: url[this.state.index],
+      thumbnailUrl: thumbnail[this.state.index],
     };
+    if (this.state.index === 2) {
+      this.state.index = 0;
+    } else {
+      this.state.index++;
+    }
+    console.log(this.state.index);
     this.props.addPhoto(photo);
   };
 
@@ -94,33 +104,23 @@ class Album extends Component {
     console.log(JSON.stringify(this.props.photos, null, 2));
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.toolbar}>Album</Text>
-        <Text style={styles.log}>
-          {JSON.stringify(this.state.log, null, 2)}
-        </Text>
+        <AlbumReq style={styles.toolbar}>
+          {JSON.stringify(album[this.state.index])}
+        </AlbumReq>
+        <TitleReq style={styles.title}>
+          {JSON.stringify(title[this.state.index])}
+        </TitleReq>
+        <URLReq style={styles.url}>
+          {JSON.stringify(url[this.state.index])}
+        </URLReq>
+        <TheumbnailURLReq style={styles.thumbnail}>
+          {JSON.stringify(thumbnail[this.state.index])}
+        </TheumbnailURLReq>
 
         <ScrollView>
-          <Image
-            height={250}
-            width={250}
-            borderRadius={20}
-            source={{
-              uri: "https://picsum.photos/200/300",
-            }}
-          />
-
-          <Button onPress={() => console.log("Thanks for clicking me!")}>
-            <ButtonText onPress={this.addPhoto}>Click Me!</ButtonText>
-          </Button>
-          <Button
-            warning
-            onPress={() => console.log(`You shouldn't have clicked me!`)}
-          >
-            <ButtonText>Don't Click Me!</ButtonText>
-          </Button>
           <View style={styles.imageContainer}>
             <TouchableOpacity style={styles.button} onPress={this.addPhoto}>
-              <Text style={styles.buttonText}>Add Photo</Text>
+              <Text style={styles.buttonText}>Next</Text>
             </TouchableOpacity>
             {this.props.photos
               ? this.props.photos.map((photo) => {
@@ -131,7 +131,7 @@ class Album extends Component {
                     >
                       <Image
                         style={{ width: 300, height: 300, resizeMode: "cover" }}
-                        source={{ uri: photo.url }}
+                        source={{ uri: url[this.state.index] }}
                       />
                     </TouchableOpacity>
                   );
@@ -143,6 +143,22 @@ class Album extends Component {
     );
   }
 }
+
+const album = ["Album 1", "Album 2", "Album 3"];
+
+const title = ["Picture 1", "Picture 2", "Picture 3"];
+
+const url = [
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300?grayscale",
+  "https://picsum.photos/200/300/?blur=1",
+];
+
+const thumbnail = [
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300?grayscale",
+  "https://picsum.photos/200/300/?blur=1",
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -160,6 +176,39 @@ const styles = StyleSheet.create({
   },
   log: {
     fontSize: 15,
+  },
+  title: {
+    backgroundColor: "pink",
+    borderWidth: 3,
+    width: 200,
+    margin: 10,
+    alignSelf: "center",
+    textAlign: "center",
+    alignItems: "center",
+    borderColor: "black",
+    padding: 10,
+  },
+  url: {
+    backgroundColor: "#fcd4f4",
+    borderWidth: 3,
+    width: 200,
+    margin: 10,
+    alignSelf: "center",
+    textAlign: "center",
+    alignItems: "center",
+    borderColor: "black",
+    padding: 10,
+  },
+  thumbnail: {
+    backgroundColor: "#f5b0e6",
+    borderWidth: 3,
+    width: 200,
+    margin: 10,
+    alignSelf: "center",
+    textAlign: "center",
+    alignItems: "center",
+    borderColor: "black",
+    padding: 10,
   },
   imageContainer: {
     flex: 1,
